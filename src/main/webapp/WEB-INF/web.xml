@@ -4,4 +4,12 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>UpLoad</servlet-name>
+    <servlet-class>com.yzf.jqfileupload.FileUpLoad</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpLoad</servlet-name>
+    <url-pattern>/upLoad</url-pattern>
+  </servlet-mapping>
 </web-app>
