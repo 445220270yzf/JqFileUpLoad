@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="JqFileUpLoad:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="JqFileUpLoad.war">
+      <element id="artifact" artifact-name="JqFileUpLoad:war exploded" />
+    </root>
+  </artifact>
+</component>
