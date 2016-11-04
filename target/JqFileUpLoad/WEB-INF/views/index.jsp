@@ -26,13 +26,12 @@
          $(function () {
             $("#fileupload").fileupload({
                 url:'${ctx}/upLoad',
-                dataType: 'json',
+                dataType: 'JSON',
                 autoUpload: true,
                 acceptFileTypes: /(\.|\/)(bmp|jpe?g|png)$/i,
                 maxFileSize: 5000000,
                 change:function (e, data) {
                     var fileType=/(\.|\/)(bmp|jpe?g|png)$/i;
-                    alert(data.files[0].size/1024)
                     if(data.files.length>1){
                         alert("请选择一个文件!");
                         return false;
@@ -40,14 +39,16 @@
                         alert("文件类型只能为 bmp,jpg,jpeg,png 格式");
                         return false;
                     }
+                    return true;
                 },
                 progressall:function (e,data) {
                     $("span").html("");
                     var progress = parseInt(data.loaded / data.total * 100, 10);
                     $("span").append(progress);
+                },
+                done:function (e, data) {
+                    $("body").append("<img src='${ctx}"+data.result.path+"'/>");
                 }
-            }).on("fileuploaddone",function (e, data) {
-                alert(data.result)
             });
          });
     </script>

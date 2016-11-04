@@ -28,8 +28,9 @@ public class FileUpLoad extends HttpServlet{
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
-            final String FIle_PATH=request.getRealPath("")+ "/UserFiles/" + new SimpleDateFormat("yyyyMMdd").format(new Date())+"/tmp";
-            File tmpFile=new File(FIle_PATH );
+            final String SERVIER_PATH=request.getRealPath("");
+            final String FIle_PATH="/UserFiles/" + new SimpleDateFormat("yyyyMMdd").format(new Date())+"/tmp";
+            File tmpFile=new File(SERVIER_PATH + FIle_PATH );
             if(!tmpFile.exists()){
                 tmpFile.mkdirs();
             }
@@ -52,7 +53,7 @@ public class FileUpLoad extends HttpServlet{
                 String temp=item.getName();
                 String fileName= UUID.randomUUID().toString().replaceAll("-","")
                         +item.getName().substring(item.getName().lastIndexOf("."));
-                final File userFile=new File(FIle_PATH,fileName);
+                final File userFile=new File(SERVIER_PATH+FIle_PATH,fileName);
                 item.write(userFile);
                 userFilePath=FIle_PATH+"/"+fileName;
             }
