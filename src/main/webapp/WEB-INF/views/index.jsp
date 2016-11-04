@@ -28,16 +28,26 @@
                 url:'${ctx}/upLoad',
                 dataType: 'json',
                 autoUpload: true,
-                acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+                acceptFileTypes: /(\.|\/)(bmp|jpe?g|png)$/i,
                 maxFileSize: 5000000,
+                change:function (e, data) {
+                    var fileType=/(\.|\/)(bmp|jpe?g|png)$/i;
+                    alert(data.files[0].size/1024)
+                    if(data.files.length>1){
+                        alert("请选择一个文件!");
+                        return false;
+                    }else if(!fileType.test(data.files[0].name)){
+                        alert("文件类型只能为 bmp,jpg,jpeg,png 格式");
+                        return false;
+                    }
+                },
                 progressall:function (e,data) {
                     $("span").html("");
                     var progress = parseInt(data.loaded / data.total * 100, 10);
                     $("span").append(progress);
-                },
-                done: function (e, data) {
-                    alert(data.result.info)
                 }
+            }).on("fileuploaddone",function (e, data) {
+                alert(data.result)
             });
          });
     </script>
